@@ -24,6 +24,9 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
+  private static final GuitarType GUITAR_TYPE = GuitarType.ACOUSTIC;
+  private static final int GUITAR_LIMIT = 3;
+
   @InjectView(R.id.container) public RelativeLayout relativeLayoutContainer;
   @InjectView(R.id.toolbar) public Toolbar toolbar;
   @InjectView(R.id.list_view_guitars) public ListView listViewGuitars;
@@ -44,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
   @Override protected void onResume() {
     super.onResume();
     listOfGuitars.clear();
-    guitarsSubscription = createGuitarsSubscription(GuitarType.ACOUSTIC, 3);
+    guitarsSubscription = createGuitarsSubscription(GUITAR_TYPE, GUITAR_LIMIT);
   }
 
   private Subscription createGuitarsSubscription(final GuitarType guitarType, int guitarLimit) {
