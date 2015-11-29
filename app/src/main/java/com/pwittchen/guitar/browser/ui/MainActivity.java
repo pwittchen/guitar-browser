@@ -27,13 +27,13 @@ public class MainActivity extends AppCompatActivity {
   private static final GuitarType GUITAR_TYPE = GuitarType.ACOUSTIC;
   private static final int GUITAR_LIMIT = 3;
 
-  @InjectView(R.id.container) public RelativeLayout relativeLayoutContainer;
-  @InjectView(R.id.toolbar) public Toolbar toolbar;
-  @InjectView(R.id.list_view_guitars) public ListView listViewGuitars;
-
   private List<String> listOfGuitars = new ArrayList<>();
   private GuitarsProvider guitarsProvider;
   private Subscription guitarsSubscription;
+
+  @InjectView(R.id.container) public RelativeLayout relativeLayoutContainer;
+  @InjectView(R.id.toolbar) public Toolbar toolbar;
+  @InjectView(R.id.list_view_guitars) public ListView listViewGuitars;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
