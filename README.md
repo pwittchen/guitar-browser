@@ -1,6 +1,8 @@
 Guitar Browser
 ==============
 
+### This branch has empty implementation
+
 Simple Android app prepared as an examplary usage of RxJava and RxAndroid for "Reactive Live Coding" presentation shown during [GDG DevFest](http://devfest.pl) 2015 in Warsaw, Poland.
 
 The most interesting part of the code can be found in [MainActivity](https://github.com/pwittchen/guitar-browser/blob/master/app/src/main/java/com/pwittchen/guitar/browser/ui/MainActivity.java) class.
@@ -14,4 +16,13 @@ You can open, build and run the project in Android Studio/IntelliJ IDEA or with 
 
 ```
 ./gradlew build run
+```
+
+Tests
+-----
+
+You can execute unit tests with the following command:
+
+```
+./gradlew test
 ```
