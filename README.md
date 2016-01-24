@@ -1,7 +1,10 @@
 Guitar Browser
 ==============
 
-### This branch has empty implementation
+### This branch has empty implementation of 2 methods
+
+- MainActivity.createGuitarsSubscription(guitarType, guitarLimit)
+- GuitarsDataProvider.observeGuitars(guitarType, guitarLimit)
 
 Simple Android app prepared as an examplary usage of RxJava and RxAndroid for "Reactive Live Coding" presentation shown during [GDG DevFest](http://devfest.pl) 2015 in Warsaw, Poland.
 
