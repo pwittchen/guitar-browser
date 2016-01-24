@@ -15,3 +15,12 @@ You can open, build and run the project in Android Studio/IntelliJ IDEA or with 
 ```
 ./gradlew build run
 ```
+
+Tests
+-----
+
+You can execute unit tests with the following command:
+
+```
+./gradlew test
+```
