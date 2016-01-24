@@ -42,17 +42,14 @@ public class GuitarsDataProvider implements GuitarsProvider {
   }
 
   @Override public Observable<Guitar> observeGuitars(final GuitarType type, final int limit) {
-    return observeGuitars().subscribeOn(Schedulers.io())
-        .flatMap(new Func1<List<Guitar>, Observable<Guitar>>() {
-          @Override public Observable<Guitar> call(List<Guitar> guitars) {
-            return Observable.from(guitars);
-          }
-        })
-        .filter(new Func1<Guitar, Boolean>() {
-          @Override public Boolean call(Guitar guitar) {
-            return guitar.type == type;
-          }
-        })
-        .limit(limit);
+    return observeGuitars().flatMap(new Func1<List<Guitar>, Observable<Guitar>>() {
+      @Override public Observable<Guitar> call(List<Guitar> guitars) {
+        return Observable.from(guitars);
+      }
+    }).filter(new Func1<Guitar, Boolean>() {
+      @Override public Boolean call(Guitar guitar) {
+        return guitar.type == type;
+      }
+    }).limit(limit);
   }
 }
