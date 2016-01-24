@@ -49,22 +49,7 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private Subscription createGuitarsSubscription(final GuitarType guitarType, int guitarLimit) {
-    return guitarsProvider.observeGuitars(guitarType, guitarLimit)
-        .subscribeOn(Schedulers.io())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(new Subscriber<Guitar>() {
-          @Override public void onCompleted() {
-            loadStringsToListView(listOfGuitars);
-          }
-
-          @Override public void onError(Throwable e) {
-            Snackbar.make(relativeLayoutContainer, e.getMessage(), Snackbar.LENGTH_LONG).show();
-          }
-
-          @Override public void onNext(Guitar guitar) {
-            listOfGuitars.add(guitar.toString());
-          }
-        });
+    return null; //TODO: implement
   }
 
   private void loadStringsToListView(List<String> list) {
