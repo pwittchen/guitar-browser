@@ -16,12 +16,9 @@ import com.pwittchen.guitar.browser.model.Guitar;
 import com.pwittchen.guitar.browser.model.GuitarType;
 import java.util.ArrayList;
 import java.util.List;
-import rx.Observable;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
   private static final GuitarType GUITAR_TYPE = GuitarType.ACOUSTIC;
@@ -62,19 +59,7 @@ public class MainActivity extends AppCompatActivity {
    * @return RxJava Subscription object
    */
   private Subscription createGuitarsSubscription(final GuitarType guitarType, int guitarLimit) {
-    return guitarsProvider.observeGuitars()
-        .subscribeOn(Schedulers.io())
-        .flatMap(new Func1<List<Guitar>, Observable<Guitar>>() {
-          @Override public Observable<Guitar> call(List<Guitar> guitars) {
-            return Observable.from(guitars);
-          }
-        })
-        .filter(new Func1<Guitar, Boolean>() {
-          @Override public Boolean call(Guitar guitar) {
-            return guitar.type == guitarType;
-          }
-        })
-        .limit(guitarLimit)
+    return guitarsProvider.observeGuitars(guitarType, guitarLimit)
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe(new Subscriber<Guitar>() {
           @Override public void onCompleted() {

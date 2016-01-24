@@ -4,9 +4,10 @@ import com.pwittchen.guitar.browser.model.Guitar;
 import com.pwittchen.guitar.browser.model.GuitarProducer;
 import com.pwittchen.guitar.browser.model.GuitarType;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import rx.Observable;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 public class GuitarsDataProvider implements GuitarsProvider {
   @Override public List<Guitar> getGuitars() {
@@ -38,5 +39,20 @@ public class GuitarsDataProvider implements GuitarsProvider {
     return Observable.just(getGuitars());
     // return Observable.error(new RuntimeException("Ooops!"));
     // uncomment line above, and comment first line to simulate error in Observable
+  }
+
+  @Override public Observable<Guitar> observeGuitars(final GuitarType type, final int limit) {
+    return observeGuitars().subscribeOn(Schedulers.io())
+        .flatMap(new Func1<List<Guitar>, Observable<Guitar>>() {
+          @Override public Observable<Guitar> call(List<Guitar> guitars) {
+            return Observable.from(guitars);
+          }
+        })
+        .filter(new Func1<Guitar, Boolean>() {
+          @Override public Boolean call(Guitar guitar) {
+            return guitar.type == type;
+          }
+        })
+        .limit(limit);
   }
 }

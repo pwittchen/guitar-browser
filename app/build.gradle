@@ -27,5 +27,8 @@ dependencies {
   compile 'com.android.support:appcompat-v7:23.1.0'
   compile 'com.android.support:recyclerview-v7:23.1.0'
   compile 'com.android.support:design:23.1.0'
+
   testCompile 'junit:junit:4.12'
+  testCompile 'com.android.support.test:testing-support-lib:0.1'
+  testCompile 'com.google.truth:truth:0.27'
 }
